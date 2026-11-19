@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y년 %-m월 %-d일' }}</time>
+      {% if page.categories and page.categories.size > 0 %}
+      <span class="dot">·</span>
+      <span class="post-cats">{{ page.categories | join: ' / ' }}</span>
+      {% endif %}
+    </p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="post-subtitle">{{ page.subtitle }}</p>{% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {% if page.tags and page.tags.size > 0 %}
+    <ul class="tag-list">
+      {% for tag in page.tags %}<li>#{{ tag }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <a class="back-link" href="{{ '/posts/' | relative_url }}">← 글 목록으로</a>
+  </footer>
+</article>

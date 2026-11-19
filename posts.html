@@ -1,0 +1,33 @@
+---
+layout: default
+title: Posts
+permalink: /posts/
+description: 도시데이터 공부와 분석 아카이브의 전체 글 목록
+---
+<header class="post-header">
+  <h1 class="post-title">Posts</h1>
+  <p class="post-subtitle">도시데이터 공부와 분석 아카이브에 쌓인 글 전체</p>
+</header>
+
+<section class="archive">
+  {% assign current_year = '' %}
+  {% for post in site.posts %}
+    {% assign y = post.date | date: '%Y' %}
+    {% if y != current_year %}
+      {% if current_year != '' %}</ul>{% endif %}
+      <h2 class="year-title">{{ y }}</h2>
+      <ul class="archive-list">
+      {% assign current_year = y %}
+    {% endif %}
+    <li>
+      <a class="post-item post-item--compact" href="{{ post.url | relative_url }}">
+        <time class="post-item-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m.%d' }}</time>
+        <span class="post-item-title">{{ post.title }}</span>
+      </a>
+    </li>
+  {% endfor %}
+  {% if current_year != '' %}</ul>{% endif %}
+  {% if site.posts.size == 0 %}
+  <p class="empty">아직 글이 없습니다.</p>
+  {% endif %}
+</section>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="680" height="320" role="img" aria-labelledby="chartTitle chartDesc">
+  <title id="chartTitle">서울 5개 자치구 인구밀도 예시 막대그래프</title>
+  <desc id="chartDesc">종로구 8,700, 중구 11,200, 성동구 19,400, 동대문구 21,300, 강남구 14,100 명/제곱킬로미터의 예시 값 비교</desc>
+
+  <rect width="680" height="320" fill="#ffffff"/>
+
+  <g font-family="Pretendard, 'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif">
+    <text x="70" y="26" font-size="12" fill="#8b949e" letter-spacing="0.04em">인구밀도 (명/㎢)</text>
+
+    <!-- 눈금선 -->
+    <g stroke="#eceef1" stroke-width="1">
+      <line x1="70" y1="82" x2="610" y2="82" stroke-dasharray="3 4"/>
+      <line x1="70" y1="166" x2="610" y2="166" stroke-dasharray="3 4"/>
+    </g>
+    <g font-size="11" fill="#8b949e" text-anchor="end">
+      <text x="60" y="86">20,000</text>
+      <text x="60" y="170">10,000</text>
+      <text x="60" y="254">0</text>
+    </g>
+
+    <!-- 막대 -->
+    <g fill="#1f4e79">
+      <rect x="93"  y="176.9" width="62" height="73.1"  rx="2"/>
+      <rect x="201" y="155.9" width="62" height="94.1"  rx="2"/>
+      <rect x="309" y="87.0"  width="62" height="163.0" rx="2"/>
+      <rect x="417" y="71.1"  width="62" height="178.9" rx="2"/>
+      <rect x="525" y="131.6" width="62" height="118.4" rx="2"/>
+    </g>
+
+    <!-- 값 -->
+    <g font-size="12" font-weight="600" fill="#1f2328" text-anchor="middle">
+      <text x="124" y="168">8,700</text>
+      <text x="232" y="147">11,200</text>
+      <text x="340" y="78">19,400</text>
+      <text x="448" y="62">21,300</text>
+      <text x="556" y="123">14,100</text>
+    </g>
+
+    <!-- 축 -->
+    <line x1="70" y1="250" x2="610" y2="250" stroke="#1f2328" stroke-width="1.4"/>
+
+    <!-- 구 이름 -->
+    <g font-size="12" fill="#57606a" text-anchor="middle">
+      <text x="124" y="274">종로구</text>
+      <text x="232" y="274">중구</text>
+      <text x="340" y="274">성동구</text>
+      <text x="448" y="274">동대문구</text>
+      <text x="556" y="274">강남구</text>
+    </g>
+    <text x="340" y="304" font-size="11" fill="#8b949e" text-anchor="middle">값은 형식 예시이며 실제 통계와 다를 수 있습니다</text>
+  </g>
+</svg>

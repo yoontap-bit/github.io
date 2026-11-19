@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'ko-KR' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
+  {% if site.author.name %}<meta name="author" content="{{ site.author.name }}">{% endif %}
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <!-- 서체: Pretendard (실패 시 Noto Sans KR → 시스템 산세리프) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- 수식: KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+</head>
+<body>
+  <a class="skip-link" href="#content">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="{{ '/posts/' | relative_url }}">Posts</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="wrap" role="main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</span>
+      <span class="footer-sep">·</span>
+      <span>{{ site.tagline }}</span>
+      <span class="footer-sep">·</span>
+      <span>Jekyll on GitHub Pages</span>
+    </div>
+  </footer>
+
+  <!-- 코드 블록 복사 버튼 -->
+  <script>
+  (function () {
+    function init() {
+      // 표를 가로 스크롤 영역으로 감싸기
+      document.querySelectorAll('.post-content table').forEach(function (t) {
+        if (t.parentElement && t.parentElement.classList.contains('table-wrap')) return;
+        var w = document.createElement('div');
+        w.className = 'table-wrap';
+        t.parentNode.insertBefore(w, t);
+        w.appendChild(t);
+      });
+
+      var blocks = document.querySelectorAll('.post-content div.highlight, .post-content pre');
+      blocks.forEach(function (block) {
+        if (block.dataset.copyReady === 'true') return;
+        block.dataset.copyReady = 'true';
+        var pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+        if (!pre) return;
+        var btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.type = 'button';
+        btn.textContent = '복사';
+        btn.setAttribute('aria-label', '코드 복사');
+        btn.addEventListener('click', function () {
+          var text = pre.innerText;
+          var done = function () {
+            btn.textContent = '복사됨';
+            btn.classList.add('is-done');
+            setTimeout(function () { btn.textContent = '복사'; btn.classList.remove('is-done'); }, 1600);
+          };
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(done).catch(fallback);
+          } else { fallback(); }
+          function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done(); } catch (e) {}
+            document.body.removeChild(ta);
+          }
+        });
+        if (block.tagName === 'PRE') {
+          var holder = document.createElement('div');
+          holder.className = 'pre-holder';
+          block.parentNode.insertBefore(holder, block);
+          holder.appendChild(block);
+          holder.appendChild(btn);
+        } else {
+          block.appendChild(btn);
+        }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else { init(); }
+  })();
+  </script>
+
+  <!-- 수식 렌더링 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof renderMathInElement !== 'function') return;
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '$', right: '$', display: false }
+      ],
+      throwOnError: false,
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
+    });
+  });
+  </script>
+</body>
+</html>
