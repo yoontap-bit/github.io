@@ -10,23 +10,16 @@ description: 도시데이터 공부와 분석 아카이브의 전체 글 목록
 </header>
 
 <section class="archive">
-  {% assign current_year = '' %}
-  {% for post in site.posts %}
-    {% assign y = post.date | date: '%Y' %}
-    {% if y != current_year %}
-      {% if current_year != '' %}</ul>{% endif %}
-      <h2 class="year-title">{{ y }}</h2>
-      <ul class="archive-list">
-      {% assign current_year = y %}
-    {% endif %}
+  <ul class="archive-list">
+    {% for post in site.posts %}
     <li>
       <a class="post-item post-item--compact" href="{{ post.url | relative_url }}">
-        <time class="post-item-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m.%d' }}</time>
+        <time class="post-item-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
         <span class="post-item-title">{{ post.title }}</span>
       </a>
     </li>
-  {% endfor %}
-  {% if current_year != '' %}</ul>{% endif %}
+    {% endfor %}
+  </ul>
   {% if site.posts.size == 0 %}
   <p class="empty">아직 글이 없습니다.</p>
   {% endif %}

@@ -119,6 +119,7 @@ a:hover { text-decoration: underline; }
 .site-nav a {
   color: var(--ink-soft);
   padding: 4px 0;
+  white-space: nowrap;
   border-bottom: 1px solid transparent;
 }
 .site-nav a:hover {
@@ -215,7 +216,7 @@ main {
   gap: 14px;
   padding: 11px 2px;
 }
-.post-item--compact .post-item-date { margin: 0; min-width: 46px; }
+.post-item--compact .post-item-date { margin: 0; min-width: 86px; font-size: 0.76rem; }
 .post-item--compact .post-item-title { font-size: 0.98rem; font-weight: 500; }
 
 .year-title {
@@ -545,6 +546,7 @@ div.highlight:hover .copy-btn,
   color: var(--ink-faint);
   font-family: var(--font-mono);
 }
+.tag-list li { flex: 0 0 auto; white-space: nowrap; }
 
 .back-link {
   font-size: 0.92rem;
@@ -567,6 +569,7 @@ div.highlight:hover .copy-btn,
   gap: 8px;
   line-height: 1.8;
 }
+.footer-inner > span { white-space: nowrap; }
 .footer-sep { color: var(--line-strong); }
 
 /* ── 문법 강조 (Rouge · GitHub Light 계열) ───────────── */
@@ -609,7 +612,7 @@ div.highlight:hover .copy-btn,
   .post-content h3 { font-size: 1.04rem; }
   .post-header { margin-bottom: 30px; }
   .post-item--compact { gap: 10px; }
-  .post-item--compact .post-item-date { min-width: 42px; font-size: 0.74rem; }
+  .post-item--compact .post-item-date { min-width: 80px; font-size: 0.72rem; }
   .embed iframe { height: 340px; }
   .embed--square iframe { height: 420px; }
   .post-content div.highlight pre,

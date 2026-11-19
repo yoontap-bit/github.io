@@ -16,7 +16,7 @@ layout: default
   <a class="post-item" href="{{ post.url | relative_url }}">
     <time class="post-item-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
     <span class="post-item-title">{{ post.title }}</span>
-    <span class="post-item-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 120 }}</span>
+    <span class="post-item-excerpt">{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 120 }}</span>
   </a>
   {% else %}
   <p class="empty">아직 글이 없습니다.</p>

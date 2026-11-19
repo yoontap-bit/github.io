@@ -68,6 +68,7 @@
 
       var blocks = document.querySelectorAll('.post-content div.highlight, .post-content pre');
       blocks.forEach(function (block) {
+        if (block.tagName === 'PRE' && block.closest('div.highlight')) return;
         if (block.dataset.copyReady === 'true') return;
         block.dataset.copyReady = 'true';
         var pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
